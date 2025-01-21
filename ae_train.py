@@ -2,8 +2,8 @@ import torch
 from torch.optim import Adam
 from tqdm.auto import tqdm
 from accelerate import Accelerator
-from utils import Dataset, cycle
-from model import Autoencoder
+from ae_utils import Dataset, cycle
+from ae_model import Autoencoder
 
 
 class Trainer:
