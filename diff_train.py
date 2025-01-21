@@ -103,7 +103,7 @@ test_dataset = CustomDataset("/path/to/test/data")
 
 trainer = Trainer(
     diffusion_model=diffusion,
-    ae=autoencoder,
+    ae=ae,
     dataset=train_dataset,
     test_dataset=test_dataset,
     train_batch_size=4,
