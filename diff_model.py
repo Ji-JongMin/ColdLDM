@@ -236,7 +236,6 @@ class Diffusion(nn.Module):
     def device(self):
         return self.betas.device
 
-    @torch.inference_mode()
     @torch.cuda.amp.autocast(enabled=False)
     def q_sample(self, x_start, x_end, t, noise=None):
         noise = default(noise, lambda: x_end - x_start)
