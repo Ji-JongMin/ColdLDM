@@ -3,7 +3,11 @@ from diff_utils import (
     Upsample,
     Downsample,
     RMSNorm,
-    SinusoidalPosEmb
+    SinusoidalPosEmb,
+    RandomOrLearnedSinusoidalPosEmb,
+    ResnetBlock,
+    LinearAttention,
+    Attention
 )
 
 class Unet_ddpm(nn.Module):
