@@ -9,10 +9,6 @@ from numpy.ma import masked_array
 import cv2
 
 
-def divisible_by(numer, denom):
-    return (numer % denom) == 0
-
-
 def cycle(dl):
     """Utility function to create an infinite data loader."""
     while True:
