@@ -78,7 +78,7 @@ class Trainer:
         self.model.train()
 
 ae = Autoencoder()
-ae.load_state_dict(torch.load(pretrained_ae))
+ae.load_state_dict(torch.load(pretrained_ae))  #Based on pretrained autoencoder
 en = ae.Encoder(input_ch=1) 
 de = ae.Decoder(output_ch=1) 
 
