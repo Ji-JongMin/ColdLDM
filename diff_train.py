@@ -98,7 +98,7 @@ diffusion = Diffusion(
     sampling_timesteps = 2    
 )
 
-train_dataset = CustomDataset("/path/to/train/data")
+train_dataset = CustomDataset("/path/to/train/data")  #Referencing ae_utils's Dataset
 test_dataset = CustomDataset("/path/to/test/data")
 
 trainer = Trainer(
