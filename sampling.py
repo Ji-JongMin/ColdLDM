@@ -5,7 +5,7 @@ import pydicom
 from torchvision import transforms as T
 from numpy.ma import masked_array
 import cv2
-from utils import extract
+from diff_utils import extract
 
 class DiffusionSampler:
     def __init__(self, model, encoder, decoder, num_timesteps):
