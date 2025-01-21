@@ -206,3 +206,42 @@ class Attention(nn.Module):
 
         out = rearrange(out, 'b h (x y) d -> b (h d) x y', x = h, y = w)
         return self.to_out(out)
+
+
+ae = Autoencoder()
+ae.load_state_dict(torch.load(pretrained_ae))
+en = ae.Encoder(input_ch=1) 
+de = ae.Decoder(output_ch=1) 
+
+
+model = Unet_ddpm(
+    dim = 64,
+    dim_mults = (1, 2, 4, 8),
+    flash_attn = True
+)
+
+diffusion = Diffusion(
+    model,
+    en, 
+    de,
+    image_size = 64,
+    timesteps = 10,           # number of steps
+    sampling_timesteps = 2    
+)
+
+train_dataset = CustomDataset("/path/to/train/data")
+test_dataset = CustomDataset("/path/to/test/data")
+
+trainer = Trainer(
+    diffusion_model=diffusion,
+    ae=autoencoder,
+    dataset=train_dataset,
+    test_dataset=test_dataset,
+    train_batch_size=4,
+    test_batch_size=1,
+    train_lr=1e-4,
+    train_num_steps=10000
+)
+
+if __name__ == "__main__":
+    trainer.train()
