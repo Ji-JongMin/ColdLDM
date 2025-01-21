@@ -20,7 +20,7 @@ class Trainer:
     ):
         self.accelerator = Accelerator()
         self.model = diffusion_model
-        self.ae = ae.eval()
+        self.en = ae.encoder.eval()
         self.dataset = dataset
         self.test_dataset = test_dataset
         self.batch_size = train_batch_size
@@ -47,8 +47,8 @@ class Trainer:
                     data25 = data25.to(device).float()
                     data100 = data100.to(device).float()
 
-                    cond = self.ae(data25)
-                    data100 = self.ae(data100)
+                    cond = self.en(data25)
+                    data100 = self.en(data100)
                     loss = self.model(data100, cond)
 
                     self.accelerator.backward(loss)
