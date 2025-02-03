@@ -108,7 +108,7 @@ trainer = Trainer(
     test_dataset=test_dataset,
     train_batch_size=4,
     test_batch_size=1,
-    train_lr=1e-4,
+    train_lr=1e-5,
     train_num_steps=10000
 )
 
