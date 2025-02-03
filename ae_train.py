@@ -34,5 +34,5 @@ class Trainer:
       
 dataroot = "path/to/your/data"
 model = Autoencoder(input_ch=1, output_ch=1)
-trainer = Trainer(model, dataroot, train_batch_size=32, train_lr=1e-4, train_num_steps=3000, amp=True)
+trainer = Trainer(model, dataroot, train_batch_size=32, train_lr=1e-5, train_num_steps=3000, amp=True)
 trainer.train()      
