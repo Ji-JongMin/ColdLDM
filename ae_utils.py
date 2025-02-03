@@ -7,7 +7,7 @@ import random
 import pydicom
 from numpy.ma import masked_array
 import cv2
-
+import random as random2
 
 def cycle(dl):
     """Utility function to create an infinite data loader."""
@@ -37,7 +37,15 @@ class Dataset(Dataset):
     def window_image(self, img, rescale=True):
         img_mean, img_std = np.mean(img), np.std(img)
         return (img - img_mean) / img_std if rescale else img
-
+        
+    def adjust_contrast(self,x):
+        gamma = (round(random2.uniform(0.8,1.2),1))
+        min = np.min(x)
+        max = np.max(x)
+        intensity_range = max - min
+        x = ((x - min) / intensity_range) ** gamma * intensity_range + min
+        return x 
+        
     def make_mask(self, img):
         mask = masked_array(data=img, mask=img < np.max(img) * 0.22)
         binary_mask = (~mask.mask).astype(np.uint8)
@@ -50,7 +58,7 @@ class Dataset(Dataset):
         output_img = np.zeros_like(img)
         output_img[labels == largest_component] = 1
         return output_img
-
+    
     def random_crop_brain_area(self, ct_image1, ct_image2, mask, crop_size=(64, 64)):
         indices = np.where(mask != 0)
         if not len(indices[0]):
@@ -68,3 +76,4 @@ class Dataset(Dataset):
         data1, data2 = data1 * mask, data2 * mask
         img1, img2 = self.window_image(data1), self.window_image(data2)
         return self.transform(img1), self.transform(img2)
+
