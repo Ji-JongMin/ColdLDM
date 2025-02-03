@@ -7,7 +7,7 @@ from ae_model import Autoencoder
 
 
 class Trainer:
-    def __init__(self, model, data_root, *, train_batch_size=32, train_lr=1e-4, train_num_steps=3000, amp=False):
+    def __init__(self, model, data_root, *, train_batch_size=32, train_lr=1e-5, train_num_steps=3000, amp=False):
         self.model = model
         self.train_num_steps = train_num_steps
         self.accelerator = Accelerator(mixed_precision='fp16' if amp else 'no')
