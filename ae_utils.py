@@ -69,7 +69,7 @@ class Dataset(Dataset):
         return (ct_image1[start_row:start_row+crop_size[0], start_col:start_col+crop_size[1]],
                 ct_image2[start_row:start_row+crop_size[0], start_col:start_col+crop_size[1]])
 
-    def __getitem__(self, index):
+    def __getitem__(self, index):           # Customize as needed to suit your requirements.
         data1 = pydicom.read_file(self.full[index]).pixel_array
         data2 = pydicom.read_file(self.qut[index]).pixel_array
         mask = self.make_mask(data1)
